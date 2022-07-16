@@ -1,5 +1,17 @@
 # image_processing_API
-it's an image processing API that resizes any image in a certain folder and it caches the data to return it again without processing this time
+it's an image processing API that resizes any image in a certain directory and it caches the data to return it again without processing this time
+
+## walkthrough
+- there is an images directory inside asstes and this directory contains the images that can be resized
+- another directory in assets called processed_images that conatins the cached images
+- a build directory that contains the compiled typescript
+- there is also a sepc directory that contains support directory that holdsjasmine configurations
+- there is a src directory that has two more directories for the routes and tests
+- also the src conatians the index.ts file which is responsible for building the server and using middlewares
+- inside routes there another index.ts file that gets all the routes and sends them to the main app
+- there is api directory inside routes which has images.ts file which is responsible for the main functionality including image processing and caching the data
+- inside tests directory all the tests belongs there for all the files and functionalities
+- finally there are some json packages for any configurations needed
 
 ## resources used
 https://stackoverflow.com/questions/54603561/return-type-for-express-routes-with-typescript
