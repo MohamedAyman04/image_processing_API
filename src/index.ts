@@ -12,7 +12,7 @@ app.listen(port, (): void => {
 app.use("/api", routes); // using routes as a middleware with url /api
 
 // adding a get method on url /
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req: Request, res: Response): void => {
   res.send("Welcome to image resize app"); // sending a response from the server
 });
 

@@ -5,7 +5,7 @@ import { images } from "./api/images"; // import images to use as a middleware
 const routes = express.Router();
 
 // making a get methond for routes
-routes.get("/", (req: Request, res: Response): any => {
+routes.get("/", (req: Request, res: Response): void => {
   res.send("Main api route"); // sending a response
 });
 

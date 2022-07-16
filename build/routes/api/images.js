@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.flag = exports.images = void 0;
 const express_1 = __importDefault(require("express")); // importing express to activate the API
-const sharp_1 = __importDefault(require("sharp")); // importing sharp for image processing
 const fs_1 = __importDefault(require("fs")); // imoprting the file system to check if the image is already processed
-const path_1 = __importDefault(require("path"));
+const path_1 = __importDefault(require("path")); // importing path to deal with paths
+const sharpProcessing_1 = __importDefault(require("../../utility/sharpProcessing")); // importing processImage which handles image processing
 // making images an express router to use as a middleware
 const images = express_1.default.Router();
 exports.images = images;
@@ -29,16 +29,9 @@ images.get("/", (req, res) => {
     else {
         try {
             // else if it doesn't exist
-            (0, sharp_1.default)(path_1.default.join("assets", "images", `${params.filename}.jpg`)) // using sharp constructor with the image path
-                .resize(Number(params.width), Number(params.height)) // resizing the image with the paramters given
-                .toFile(path_1.default.join("assets", "processed_images", `${params.filename}_processed_${params.width}_${params.height}.jpg`), // saving the image to a directory
-            (error) => {
-                // handling errors
-                if (error != null)
-                    // see if the error is not null to print it out
-                    console.log("error", error); // printing out the error if there is any
-            } // end of the error callback function
-            ); // end of the toFile method
+            (0, sharpProcessing_1.default)(
+            // calling processImage which handles image processing
+            params.filename, params.width, params.height);
             exports.flag = flag = true;
             setTimeout(() => {
                 // adding setTimeout for the response to send the image file

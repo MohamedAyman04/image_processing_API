@@ -1,14 +1,14 @@
 import express, { Request, Response } from "express"; // importing express to activate the API
-import sharp from "sharp"; // importing sharp for image processing
 import fs from "fs"; // imoprting the file system to check if the image is already processed
-import path from "path";
+import path from "path"; // importing path to deal with paths
+import processImage from "../../utility/sharpProcessing"; // importing processImage which handles image processing
 
 // making images an express router to use as a middleware
 const images = express.Router();
 let flag = true;
 
 // adding the get method with the url / to handle the image processing functionality
-images.get("/", (req: Request, res: Response): any => {
+images.get("/", (req: Request, res: Response): void => {
   const params = req.query; // making a variable that holds the request query
   console.log(params.filename, params.width, params.height); // printing out the url parameters to check that everything is fine
   if (
@@ -17,7 +17,8 @@ images.get("/", (req: Request, res: Response): any => {
     )
   ) {
     // checking if the image doesn't exist
-    return res.send("sorry image not found"); // returning a respose of image not found
+    res.send("sorry image not found"); // sending a respose of image not found
+    return; // returning
   }
   if (
     fs.existsSync(
@@ -44,21 +45,12 @@ images.get("/", (req: Request, res: Response): any => {
   } else {
     try {
       // else if it doesn't exist
-      sharp(path.join("assets", "images", `${params.filename}.jpg`)) // using sharp constructor with the image path
-        .resize(Number(params.width), Number(params.height)) // resizing the image with the paramters given
-        .toFile(
-          path.join(
-            "assets",
-            "processed_images",
-            `${params.filename}_processed_${params.width}_${params.height}.jpg`
-          ), // saving the image to a directory
-          (error): void => {
-            // handling errors
-            if (error != null)
-              // see if the error is not null to print it out
-              console.log("error", error); // printing out the error if there is any
-          } // end of the error callback function
-        ); // end of the toFile method
+      processImage(
+        // calling processImage which handles image processing
+        params.filename as unknown as string,
+        params.width as unknown as string,
+        params.height as unknown as string
+      );
       flag = true;
       setTimeout((): void => {
         // adding setTimeout for the response to send the image file
@@ -73,7 +65,8 @@ images.get("/", (req: Request, res: Response): any => {
         ); // returning a response of the image processed
       }, 100); // 100ms delay
     } catch (error) {
-      return res.send("sorry an error occured");
+      res.send("sorry an error occured"); // sending a response
+      return; // returning
     }
   }
 }); // end of the get python
