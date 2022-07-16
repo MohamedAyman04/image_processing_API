@@ -13,6 +13,12 @@ it's an image processing API that resizes any image in a certain directory and i
 - inside tests directory all the tests belongs there for all the files and functionalities
 - finally there are some json packages for any configurations needed
 
+## how to use it
+- open you browser
+- the url: http://localhost:8080/api/images
+- then type the parameters ex: ?filename=fjord&width=400&height=400
+- then the picture and the deminsions should be shown on your browser
+
 ## resources used
 - https://stackoverflow.com/questions/54603561/return-type-for-express-routes-with-typescript
 - https://youtu.be/1oVme5nIEpY
