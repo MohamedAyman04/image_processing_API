@@ -13,6 +13,9 @@ it's an image processing API that resizes any image in a certain directory and i
 - inside tests directory all the tests belongs there for all the files and functionalities
 - finally there are some json packages for any configurations needed
 
+## to see if the app works
+go to http://localhost:8080 it should respond with Welcome to image resize app
+
 ## how to use it
 - open you browser
 - the url: http://localhost:8080/api/images
