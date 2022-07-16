@@ -1,4 +1,4 @@
-# image_processing_API
+# Image processing API
 it's an image processing API that resizes any image in a certain directory and it caches the data to return it again without processing this time
 
 ## walkthrough
