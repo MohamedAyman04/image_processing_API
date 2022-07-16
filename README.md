@@ -14,4 +14,8 @@ it's an image processing API that resizes any image in a certain directory and i
 - finally there are some json packages for any configurations needed
 
 ## resources used
-https://stackoverflow.com/questions/54603561/return-type-for-express-routes-with-typescript
+- https://stackoverflow.com/questions/54603561/return-type-for-express-routes-with-typescript
+- https://youtu.be/1oVme5nIEpY
+- https://youtu.be/M44umyYPiuo
+- https://youtu.be/I0ee0wbCnHQ
+- https://youtu.be/VtGcELANPgU
