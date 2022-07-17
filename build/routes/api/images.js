@@ -19,7 +19,8 @@ images.get("/", (req, res) => {
     console.log(params.filename, params.width, params.height); // printing out the url parameters to check that everything is fine
     if (!fs_1.default.existsSync(path_1.default.resolve(path_1.default.join("assets", "images", `${params.filename}.jpg`)))) {
         // checking if the image doesn't exist
-        return res.send("sorry image not found"); // returning a respose of image not found
+        res.send("sorry image not found"); // sending a respose of image not found
+        return; // returning
     }
     if (fs_1.default.existsSync(path_1.default.resolve(path_1.default.join("assets", "processed_images", `${params.filename}_processed_${params.width}_${params.height}.jpg`)))) {
         // checking if the file already exists or not
@@ -39,7 +40,8 @@ images.get("/", (req, res) => {
             }, 100); // 100ms delay
         }
         catch (error) {
-            return res.send("sorry an error occured");
+            res.send("sorry an error occured"); // sending a response
+            return; // returning
         }
     }
 }); // end of the get python
